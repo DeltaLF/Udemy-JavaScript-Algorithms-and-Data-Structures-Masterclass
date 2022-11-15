@@ -1,0 +1,20 @@
+Recursion:
+A process (a function) that calls itself (should have an end point)
+
+### How recursive functions work
+Invoke the same function with a different input until reaching base.
+
+### Base case
+The condition when the recursion ends
+
+### Different Input
+So we can reach base case at some moments in the future
+
+
+### Pitfalls:
+no base case
+forget to return or return the wrong thing
+stack overflow
+
+### Pure Recursion Tips (no help function)
+For arrays, use methods like slice, the spread operator, and concat that make copies of arrays so you do not mutate them
