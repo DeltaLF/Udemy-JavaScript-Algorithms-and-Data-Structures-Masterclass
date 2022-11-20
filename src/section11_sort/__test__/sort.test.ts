@@ -4,6 +4,7 @@ import { insertSort } from "../insertion_sort";
 // intermeditae sort
 import {mergeSort} from "../../section15_intertmediate_sort/merge_sort";
 import { quickSort } from "../../section15_intertmediate_sort/quick_sort";
+import { radixSort } from "../../section15_intertmediate_sort/radix_sort";
 
 export type SortFunction = (arr:number[])=>number[]
 
@@ -16,7 +17,8 @@ const sortI = mutationSort(bubbleSort);
 const sortII = mutationSort(selectionSort); 
 const sortIII = mutationSort(insertSort); 
 const sortIV = mutationSort(mergeSort); 
-const sort = mutationSort(quickSort); 
+const sortV = mutationSort(quickSort); 
+const sort = mutationSort(radixSort); 
 
 
 it('returns a sorted number array',()=>{
