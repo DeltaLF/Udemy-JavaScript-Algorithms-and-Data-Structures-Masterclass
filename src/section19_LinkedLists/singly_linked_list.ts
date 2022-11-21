@@ -1,17 +1,18 @@
 
-class Node<T>{
+import {LinkedList, BaseNode} from "./linked_list.type"
+class Node<T> implements BaseNode<T>{
     public next: null | Node<T> =null;
     constructor(public val:T){
         this.val = val;
     }
 }
 
-class SinglyLinkedList<T>{
+class SinglyLinkedList<T> implements LinkedList<T, Node<T>>{
     public head: null | Node<T> = null;
     public tail: null | Node<T> = null;
     public length: number =0;
     constructor(){}
-    push(val:T){
+    push(val:T) {
         // create a new node and append it at the tail
         const newNode = new Node(val);
         if( this.length === 0){
