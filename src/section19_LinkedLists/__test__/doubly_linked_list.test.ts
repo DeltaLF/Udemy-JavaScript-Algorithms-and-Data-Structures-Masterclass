@@ -240,7 +240,7 @@ it('tests doubly linked list remove method',()=>{
 
 })
 
-/*
+
 it('tests doubly linked list reverse method',()=>{
     const linkedList = new DoublyLinkedList();
     linkedList.push(50);
@@ -248,31 +248,42 @@ it('tests doubly linked list reverse method',()=>{
     expect(linkedList.tail?.val).toEqual(50);
     expect(linkedList.tail?.next).toBeNull;
     expect(linkedList.head?.val).toEqual(50);
-    linkedList.push(100);
-    linkedList.reverse();
+    expect(linkedList.head?.prev).toBeNull;
+    expect(linkedList.tail?.prev).toBeNull;
+
+    linkedList.push(100); // 50 <-> 100
+    linkedList.reverse(); // 100 <-> 50
     expect(linkedList.head?.val).toEqual(100);
     expect(linkedList.head?.next?.val).toEqual(50);
     expect(linkedList.tail?.val).toEqual(50);
     expect(linkedList.tail?.next).toBeNull;
-    linkedList.reverse(); // back to original 
+    expect(linkedList.head?.prev).toBeNull;
+    expect(linkedList.tail?.prev?.val).toEqual(100);
+    linkedList.reverse(); // back to original 50 <-> 100 
     expect(linkedList.head?.val).toEqual(50);
     expect(linkedList.head?.next?.val).toEqual(100);
     expect(linkedList.tail?.val).toEqual(100);
     expect(linkedList.tail?.next).toBeNull;
-    linkedList.push(150);
+    expect(linkedList.head?.prev).toBeNull;
+    expect(linkedList.tail?.prev?.val).toEqual(50);
+    linkedList.push(150); // 50 <-> 100 <-> 150
     linkedList.reverse();
     expect(linkedList.head?.val).toEqual(150);
     expect(linkedList.head?.next?.val).toEqual(100);
     expect(linkedList.head?.next?.next?.val).toEqual(50);
     expect(linkedList.tail?.val).toEqual(50);
     expect(linkedList.tail?.next).toBeNull;
+    expect(linkedList.head?.prev).toBeNull;
+    expect(linkedList.tail?.prev?.val).toEqual(100);
     linkedList.reverse();
     expect(linkedList.head?.val).toEqual(50);
     expect(linkedList.head?.next?.val).toEqual(100);
     expect(linkedList.head?.next?.next?.val).toEqual(150);
     expect(linkedList.tail?.val).toEqual(150);
     expect(linkedList.tail?.next).toBeNull;
+    expect(linkedList.head?.prev).toBeNull;
+    expect(linkedList.tail?.prev?.val).toEqual(100);
+    expect(linkedList.tail?.prev?.prev?.val).toEqual(50);
 
 })
 
-*/

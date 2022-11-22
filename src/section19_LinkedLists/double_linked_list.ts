@@ -156,6 +156,33 @@ class DoublyLinkedList<T> implements LinkedList<T, Node<T>>{
         return value;
     };
     reverse(){
+        if(this.length <= 1) return this;
+        /*
+              prevNode    node     nextNode     
+        0   <->   1   <->   2   <->   3
+        reverse
+        3 <-> 2 <-> 1 <-> 0
+        */
+        // here the length >= 1 (prevNode might be null)
+        let nextNode = this.tail!;
+        let node = this.tail!.prev;
+        let prevNode = node?.prev ? node.prev : null;
+        // exchange tail and head
+        this.tail = this.head;  // new tail
+        this.head = nextNode;       // new head
+        // start iterating from tail 
+        nextNode.next = node; // the new head
+        nextNode.prev = null;
+        while(!!node){
+            node.prev = nextNode;
+            node.next = prevNode;
+            // iterate from right to left                        
+            nextNode = node;
+            node = prevNode;
+            prevNode = prevNode?.prev ? prevNode.prev : null;
+        }
+
+
         return this
     }
     
