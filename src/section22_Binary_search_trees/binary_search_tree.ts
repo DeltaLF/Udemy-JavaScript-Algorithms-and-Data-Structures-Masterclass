@@ -1,7 +1,7 @@
 
-class Node<T> {
-    public left:Node<T> | null = null;
-    public right: Node<T> | null = null;
+class TreeNode<T> {
+    public left:TreeNode<T> | null = null;
+    public right: TreeNode<T> | null = null;
     constructor(public val:T){
         this.val = val;
     }
@@ -15,12 +15,12 @@ class Node<T> {
  insert(4)
 */
 
-class BinarySearchTree<T>{
-    public root: Node<T> | null = null;
+class BinaryTree<T>{
+    public root: TreeNode<T> | null = null;
     constructor(){
     }
     insert(val:T):void{
-        const node = new Node(val);
+        const node = new TreeNode(val);
         if(!this.root){
             this.root = node;
             return
@@ -48,11 +48,11 @@ class BinarySearchTree<T>{
 
     }
 
-    find(val:T): Node<T> | null{
+    find(val:T): TreeNode<T> | null{
         if(!this.root){
             return null;
         }
-        let compNode: Node<T> | null = this.root;
+        let compNode: TreeNode<T> | null = this.root;
         while(!!compNode){
             if(val === compNode.val){
                 return compNode;
@@ -65,6 +65,47 @@ class BinarySearchTree<T>{
         }    
         return null;            
     }
+
+    // breadth first search
+    /*
+     5
+    /  \
+  0     7
+ / \   / \
+-1  3 6   8 
+queue: [5]
+arr: []
+while=>
+queue: []
+arr: [5]
+-> 
+queue:[0,7]
+arr:[5]
+while=>
+queue:[7]
+array:[5,0]
+->
+queue:[7,-1,3]
+arr:[5,0]
+....
+*/
+    BFS():TreeNode<T>[]{
+        if(!this.root) return [];
+        const queue:TreeNode<T>[] = [];  // use array to replace an actual queue
+        const visitedArr:TreeNode<T>[] = []
+        queue.push(this.root!);
+        while(queue.length > 0){
+            const node = queue.shift()! as TreeNode<T>;
+            visitedArr.push(node);
+            if(!!node.left){
+                queue.push(node.left);
+            }
+            if(!!node.right){
+                queue.push(node.right);
+            }
+        }
+        return visitedArr
+    }
 }
 
-export {Node, BinarySearchTree}
+export {TreeNode, BinaryTree}

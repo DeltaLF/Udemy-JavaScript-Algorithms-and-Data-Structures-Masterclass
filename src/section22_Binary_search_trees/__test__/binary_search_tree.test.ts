@@ -1,8 +1,8 @@
-import { Node, BinarySearchTree } from "../binary_search_tree";
+import {  BinaryTree } from "../binary_search_tree";
 
 it('tests insert method in binary searh tree',()=>{
     // init
-    const bst = new BinarySearchTree<number>()
+    const bst = new BinaryTree<number>()
     // add on root
     bst.insert(5);
     expect(bst.root?.val).toEqual(5);
@@ -34,7 +34,7 @@ it('tests find method in binary search tree',()=>{
     /  \   / \
    0    4 6    8
     */
-    const bst = new BinarySearchTree();
+    const bst = new BinaryTree();
     expect(bst.find(5)).toBeNull();
     bst.insert(5);
     bst.insert(2);
@@ -69,8 +69,5 @@ it('tests find method in binary search tree',()=>{
     expect(nodeVII?.right?.val).toEqual(8);
     expect(bst.find(6)).not.toBeNull();
     expect(bst.find(8)).not.toBeNull();
-
-
-    
 
 });

@@ -43,4 +43,4 @@ class Queue<T> implements IQueue<T, Node<T>>{
     }
 }
 
-export { Queue}
+export { Queue, Node}
