@@ -106,6 +106,78 @@ arr:[5,0]
         }
         return visitedArr
     }
+
+
+    // DFS
+    /*
+    note:
+    P: parent node
+    L: left node
+    R: right node 
+    (L always priors to R)
+    preOrder: PLR  (pre for P)
+    posOrder: LRP  (pos for P)
+    inOrder : LPR  (in for P)
+     */
+
+    /*
+    preOrder
+         0
+       /   \
+      1     4
+     / \   /  \
+    2   3 5    6
+    */
+    preOrder():TreeNode<T>[]{
+        if(!this.root) return [];
+        const visitedArr: TreeNode<T>[] = [];
+        const preOrderhelper = (node:TreeNode<T> | null):void => {
+            if(!!node ){
+                visitedArr.push(node);
+                preOrderhelper(node.left);
+                preOrderhelper(node.right);
+            }
+        }
+        preOrderhelper(this.root);
+        return visitedArr;
+    }
+    /*
+    posOrder
+         6
+       /   \
+      2     5
+     / \   /  \
+    0   1 3    4
+    */
+    posOrder():TreeNode<T>[]{
+        
+
+        const postorderTraversal = (node:TreeNode<T> | null):TreeNode<T>[]=>{
+            if(!node) return []
+            return postorderTraversal(node.left).concat(postorderTraversal(node.right), [node])
+        }
+        return postorderTraversal(this.root);
+        // const visitedArr:TreeNode<T>[] = [];
+        // const postOrderHelper = (node:TreeNode<T>):void=>{
+        //     if(!!node.left) postOrderHelper(node.left);
+        //     if(!!node.right) postOrderHelper(node.right);
+        //     visitedArr.push(node);
+        // }
+        // postOrderHelper(this.root);
+        // return visitedArr;
+    }
+
+    inOrder():TreeNode<T>[]{
+        if(!this.root) return [];
+        const visitedArr:TreeNode<T>[] = [];
+        const inOrderHelper = (node:TreeNode<T>):void => {
+            if(!!node.left) inOrderHelper(node.left);
+            visitedArr.push(node);
+            if(!!node.right) inOrderHelper(node.right);
+        }
+        inOrderHelper(this.root);
+        return visitedArr;
+    }
 }
 
 export {TreeNode, BinaryTree}
