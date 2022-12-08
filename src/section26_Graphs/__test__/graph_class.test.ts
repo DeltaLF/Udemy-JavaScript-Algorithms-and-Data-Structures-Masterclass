@@ -61,3 +61,45 @@ it('tests removeEdge method in Graph',()=>{
     expect(graph.adjacenecyList).toEqual({A:[],B:['C'],C:['B']});
 
 });
+
+
+it('tests depth frist traversal method in Graph', ()=>{
+    const graph = new Graph();
+    graph.addVertex('A');
+    graph.addVertex('B');
+    graph.addVertex('C');
+    graph.addVertex('D');
+    graph.addVertex('E');
+    graph.addVertex('F');
+    graph.addEdge('A','B');
+    graph.addEdge('B','D');
+    graph.addEdge('A','C');
+    graph.addEdge('C','E');
+    graph.addEdge('D','E');
+    graph.addEdge('D','F');
+    graph.addEdge('F','E');
+
+    expect(graph.dft('A')).toEqual(['A','B','D','E','C','F'])
+
+    expect(graph.dftIterative('A')).toEqual(['A','B','D','E','F','C']);
+});
+
+it('tests breadth frist traversal method in Graph', ()=>{
+    const graph = new Graph();
+    graph.addVertex('A');
+    graph.addVertex('B');
+    graph.addVertex('C');
+    graph.addVertex('D');
+    graph.addVertex('E');
+    graph.addVertex('F');
+    graph.addEdge('A','B');
+    graph.addEdge('A','E');
+    graph.addEdge('B','C');
+    graph.addEdge('B','D');
+    graph.addEdge('E','D');
+    graph.addEdge('E','F');
+    graph.addEdge('C','D');
+    graph.addEdge('D','F');
+    expect(graph.bft('A')).toEqual(['A','B','E','C','D','F'])
+
+});
